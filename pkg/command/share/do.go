@@ -281,3 +281,46 @@ func (o *DoOptions) RunRange(iPodInfos []*FloatInfo, jPodInfos []*FloatInfo) []*
 
 	return resultData
 }
+
+func CreateDefaultOptions() DoOptions {
+	doOptions := DoOptions{
+		Namespace:                utils.DefaultNamespace,
+		Port:                     "8889",
+		CustomizedTargetPortList: []string{},
+		CustomizedTargetIPList:   []string{},
+		TargetDNSServer:          "",
+		TargetHostToLookup:       "",
+		PodWaitTime:              30,
+		Protocol:                 string(utils.TCP),
+		MaxNum:                   3,
+		AutoClean:                false,
+		CmdTimeout:               10,
+		Version:                  "v0.0.2",
+		// src
+		SrcImageRepository: utils.DefaultImageRepository,
+		SrcKubeConfig:      utils.DefaultKubeConfigPath,
+		// dst
+		DstImageRepository: "",
+		DstKubeConfig:      "",
+		Mode:               Pod,
+	}
+	return doOptions
+}
+
+func (d *DoOptions) Equal(other DoOptions) bool {
+	return d.Namespace == other.Namespace &&
+		d.Version == other.Version &&
+		d.Mode == other.Mode &&
+		d.Protocol == other.Protocol &&
+		d.PodWaitTime == other.PodWaitTime &&
+		d.Port == other.Port &&
+		d.TargetDNSServer == other.TargetDNSServer &&
+		d.TargetHostToLookup == other.TargetHostToLookup &&
+		d.MaxNum == other.MaxNum &&
+		d.CmdTimeout == other.CmdTimeout &&
+		d.AutoClean == other.AutoClean &&
+		d.SrcKubeConfig == other.SrcKubeConfig &&
+		d.SrcImageRepository == other.SrcImageRepository &&
+		d.DstKubeConfig == other.DstKubeConfig &&
+		d.DstImageRepository == other.DstImageRepository
+}

@@ -38,6 +38,7 @@ func WaitPodReady(c kubernetes.Interface, namespace, selector string, timeout in
 
 // waitPodReady  Poll up to timeout seconds for pod to enter running state.
 // Returns an error if the pod never enters the running state.
+// nolint
 func waitPodReady(c kubernetes.Interface, namespaces, podName string, timeout time.Duration) error {
 	return wait.PollImmediate(time.Second, timeout, isPodReady(c, namespaces, podName))
 }

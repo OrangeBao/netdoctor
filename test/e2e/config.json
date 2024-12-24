@@ -1,0 +1,12 @@
+{
+ "namespace": "kosmos-system",
+ "version": "v0.0.2",
+ "mode": "pod",
+ "protocol": "tcp",
+ "podWaitTime": 30,
+ "port": "8889",
+ "maxNum": 3,
+ "cmdTimeout": 10,
+ "srcKubeConfig": "~/.kube/config",
+ "srcImageRepository": "ghcr.io/kosmos-io"
+}

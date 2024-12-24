@@ -47,33 +47,11 @@ func NewInitCmd() *cobra.Command {
 }
 
 func (o *InitOptions) Run() error {
-	doOptions := share.DoOptions{
-		Namespace:                utils.DefaultNamespace,
-		Port:                     "8889",
-		CustomizedTargetPortList: []string{},
-		CustomizedTargetIPList:   []string{},
-		TargetDNSServer:          "",
-		TargetHostToLookup:       "",
-		PodWaitTime:              30,
-		Protocol:                 string(utils.TCP),
-		MaxNum:                   3,
-		AutoClean:                false,
-		CmdTimeout:               10,
-		Version:                  "v0.0.2",
-		// src
-		SrcImageRepository: utils.DefaultImageRepository,
-		SrcKubeConfig:      utils.DefaultKubeConfigPath,
-		// dst
-		DstImageRepository: "",
-		DstKubeConfig:      "",
-		Mode:               share.Pod,
-	}
-
+	doOptions := share.CreateDefaultOptions()
 	if err := utils.WriteOpt(doOptions); err != nil {
 		klog.Fatal(err)
 	} else {
 		klog.Info("write opts success")
-		//
 	}
 	return nil
 }

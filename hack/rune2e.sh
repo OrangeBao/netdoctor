@@ -2,6 +2,11 @@
 
 echo "E2e test of netdoctor"
 
+# build netdoctor
+REPO_ROOT=$(dirname "${BASH_SOURCE[0]}")/..
+cd $REPO_ROOT
+make netctl
+
 # Install ginkgo
 GO111MODULE=on go install github.com/onsi/ginkgo/v2/ginkgo
 
